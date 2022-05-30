@@ -19,19 +19,18 @@ public class LoginUser implements UserDetails {
         return this.user;
     }
 
-    // ユーザーの認証に使用されるパスワードを返却する
+    // 認証に使用するパスワードを返却
     @Override
     public String getPassword() {
         return this.user.getPassword();
     }
 
-    // ユーザーの認証に使用されるユーザー名を返却する
+    // 認証に使用するユーザー名を返却
     @Override
     public String getUsername() {
         return this.user.getEmail();
     }
 
-    // 以降は今回利用しません
 
     // ユーザーに付与された権限を返却する
     @Override
@@ -42,25 +41,21 @@ public class LoginUser implements UserDetails {
     	return AuthorityUtils.createAuthorityList("GENERAL");
     }
 
-    // アカウントの有効期限の状態を判定する
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    // アカウントのロック状態を判定する
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    // 資格情報の有効期限の状態を判定する
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
 
-    // 有効なユーザかを判定する
     @Override
     public boolean isEnabled() {
         return true;

@@ -16,21 +16,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	        .anyRequest().authenticated();
 
 		   http.formLogin()
-	        .loginProcessingUrl("/login") // ログイン処理のパス
-	        .loginPage("/loginForm") // ログインページの指定
-	        .usernameParameter("email") // ログインページのメールアドレス
-	        .passwordParameter("password") // ログインページのパスワード
+	        .loginProcessingUrl("/login") // ログインのパス
+	        .loginPage("/loginForm") // ページの指定
+	        .usernameParameter("email") // メールアドレス
+	        .passwordParameter("password") // パスワード
 	        .defaultSuccessUrl("/home", true) // ログイン成功後のパス
-	        .failureUrl("/loginForm?error"); //
+	        .failureUrl("/loginForm?error");
 
 		   http.logout()
-	        .logoutUrl("/logout") //ログアウト処理のパス
+	        .logoutUrl("/logout") //ログアウトのパス
 	        .logoutSuccessUrl("/loginForm");
+		   
+		   
 
-		   http.authorizeRequests()
-           .antMatchers("/loginForm").permitAll()
-           .antMatchers("/admin").hasAuthority("ADMIN") // 管理者のみ/adminにアクセスできる
-           .anyRequest().authenticated();
+//		   http.authorizeRequests()
+//           .antMatchers("/loginForm").permitAll()
+//           .antMatchers("/admin").hasAuthority("ADMIN") // 管理者のみにアクセス可
+//           .anyRequest().authenticated();
 	    }
 
 	   @Bean
